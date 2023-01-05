@@ -31,6 +31,17 @@ const App = (): JSX.Element => {
 
     return data.filter((item) => item.name.toLowerCase().includes(lowerSearch));
   }, [search]);
+  
+  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [currentPage, setCurrentPage] = useState(0);
+  const pages = Math.ceil(data.length / itemsPerPage);
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = data.slice(startIndex, endIndex);
+  
+  useEffect(() => {
+
+  }, [])
 
   return (
     <div className="container-main">
@@ -44,10 +55,19 @@ const App = (): JSX.Element => {
           onChange={(event) => setSearch(event.target.value)}
         />
       </div>
+      
+      <div>
+        {
+          Array.from(Array(pages), (item, index) => {
+            return <button value={index} onClick={(ev) => setCurrentPage(Number(ev.target.value))}>{index}</button> //consertar o erro de tipo
+          })
+        }
+      </div>
+
 
       <div className="container-list">
         <Row gutter={[14, 14]} className="row">
-          {filteredItem.map((item) => (
+          {currentItems.map((item) => ( // criar a condição para mostrar filteredItem ou currentItems
             <Col span={6} key={item.id}>
               <CardPokemon objeto={item} />
             </Col>
