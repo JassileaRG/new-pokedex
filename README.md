@@ -10,5 +10,9 @@ Minha versão de estudo do projeto de pokédex.
 - States;
 - Estrutura de um projeto React;
 
-# O que minha versão da pokédex faz:
+## O que minha versão da pokédex faz:
 - Filtra os pokémons por nome;
+- Paginação da lista de pok
+
+## Limitações:
+- A filtragem de pokémons, após a adição da paginação;
